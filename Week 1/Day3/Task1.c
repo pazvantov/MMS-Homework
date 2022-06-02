@@ -68,7 +68,8 @@ int main()
     		n /= 2;
     		i--;
     	}
-    	if(forbinary[0] == '1')printf("-");
+    	printf("First bit is a sign bit\n");
+    	printf("%c",forbinary[0]);
         for(;i<33;i++)
         {
             printf("%c",forbinary[i]);
