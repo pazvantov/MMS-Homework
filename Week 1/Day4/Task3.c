@@ -8,24 +8,36 @@ int main()
     char num[10];
     int length,counter = 0;
     int DecNum = 0;
-    char result[10];
+    char result[50] = "";
     int InsertedNumSys,ToConvertSys;
     printf("Insert number:");
     scanf("%s",num);
     length = strlen(num);
-    
+    for(int i=0;i<length;i++)
+    {
+        if(!(('0' <= num[i] && '9' >= num[i]) || ('a' <= num[i] && 'z' >= num[i])))
+        {
+            fprintf(stderr,"Invalid symbols used!\n");
+            return 1;
+        }
+    }
     printf("From base:");
     scanf("%d",&InsertedNumSys);
     if(InsertedNumSys < 2 || InsertedNumSys > 36)
     {
-        printf("Invalid input base!\n");
+        fprintf(stderr,"Invalid input base!\n");
         return 1;
     }
     for(int i=0;i<length;i++)
     {
-        if(!((num[i]>='0' && num[i]<='9')||(num[i]>='a' && num[i]<='z')))
+        if((num[i]>='0' + InsertedNumSys) && ('0' <= num[i] && '9' >= num[i]))
         {
-            printf("Invalid number!\n");
+            fprintf(stderr,"Invalid number!\n");
+            return 1;
+        }  
+        if((num[i] >='a' + InsertedNumSys - 10)&&('a' <= num[i] && 'z' >= num[i]))
+        {
+            fprintf(stderr,"Invalid number!\n");
             return 1;
         }  
     }
@@ -33,7 +45,7 @@ int main()
     scanf("%d",&ToConvertSys);
     if(ToConvertSys < 2 || ToConvertSys > 36)
     {
-        printf("Invalid output base!\n");
+        fprintf(stderr,"Invalid output base!\n");
         return 1;
     }
     for(int i=length - 1;i>=0;i--)
@@ -42,14 +54,23 @@ int main()
             DecNum +=((num[i] - '0') * pow(InsertedNumSys,counter));
         else
             DecNum +=((num[i] - 'a' + 10) * pow(InsertedNumSys,counter));
-        printf("DecNum = %d --- counter = %d\n",DecNum,counter);
         counter++;
     }
     printf("Result = %d\n",DecNum);
+    int ost;
+    counter = 0;
+    while(DecNum != 0)
+    {
+        ost = DecNum % ToConvertSys;
+        result[counter] = possibleSymbols[ost];
+        DecNum /= ToConvertSys;
+        counter++;
+    }
+    printf("The converted num is : ");
+    for(int i=strlen(result)-1;i>=0;i--)
+    {
+        printf("%c",result[i]);
+    }
+    printf("\n");
 
-    //To do 
-    //da opravq problema s po malka broina sistema
-    //da izpolzva znaci ot po golqma
-    //
-    //Prevrushtane ot Decimal v izbranata broina sistema
 }
