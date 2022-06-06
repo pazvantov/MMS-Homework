@@ -18,7 +18,7 @@ unsigned onesCount(uint64_t mask)
     unsigned count = 0;
     for(int i=0;i<64;i++)
     {
-        if(!!(mask & (1<<i)))
+        if(!!(mask & (1ul<<i)))
             count++;
         
     }

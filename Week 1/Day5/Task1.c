@@ -13,8 +13,6 @@ int main()
     
     while(scanf("%[^\n]",input) != EOF)
     {
-        if(input[0] == 0)
-            break;
         length = strlen(input);
 
         for(i=0;i<length;i++)
