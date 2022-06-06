@@ -5,35 +5,13 @@
 
 int main()
 {
-    char input[30];
     char operation;
-    char forConvert[20];
     double op1,op2,result;
-    int i,length;
+    int i,length,count = 0;;
     
-    while(scanf("%[^\n]",input) != EOF)
+    while(scanf("%lf %c %lf",&op1, &operation, &op2) != EOF)
     {
-        length = strlen(input);
-
-        for(i=0;i<length;i++)
-        {
-            if((input[i]>='0' && input[i]<='9') || input[i] == '.')
-                forConvert[i] = input[i];
-            else break;
-        }
-
-        op1 = strtod(forConvert,NULL);
-        i++;
-        operation = input[i];
-
-        for(i++;i<length-1;i++)
-        {
-            forConvert[i] = input[i];
-        }
-
-        op2 = strtod(forConvert,NULL);
         printf("op1=%lf, operation = %c ,  op2=%lf\n",op1,operation,op2);
-
         if(op1 == 0 && op2 == 0)
         {
             fprintf(stderr,"---Invalid input!\n");
@@ -59,7 +37,5 @@ int main()
         printf("%0.2lf\n",result);
     }
     
-    
-
     return 0;
 }
